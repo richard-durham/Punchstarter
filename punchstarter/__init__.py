@@ -8,8 +8,10 @@ app.config.from_object('punchstarter.default_settings') #let Flask know about th
 manager = Manager(app)
 
 db = SQLAlchemy(app)
-migrate = Migrate(app)
+migrate = Migrate(app,db)
 manager.add_command('db', MigrateCommand)
+
+from punchstarter.models import *
 
 @app.route("/")
 def hello():
