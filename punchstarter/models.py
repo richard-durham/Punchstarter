@@ -2,22 +2,22 @@ from punchstarter import db
 
 class Member(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	first_name = db.Column(db.string(100))
-	last_name = db.Column(db.string(100))
+	first_name = db.Column(db.String(100))
+	last_name = db.Column(db.String(100))
 	project = db.relationship('Project', backref='creator')
-	pledge = db.relationship('Pledge', backref='pledgor', ForeignKey='Pledge.member_id')
+	pledges = db.relationship('Pledge', backref='pledgor', foreign_keys='Pledge.member_id')
 
 class Project(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	member_id = db.Column(db.Integer, db.ForeignKey('member_id'), nullable=False)
-	name = db.Column(db.Text)
+	name = db.Column(db.String(100))
 	short_description = db.Column(db.Text)
 	long_description = db.Column(db.Text)
 	goal_amount = db.Column(db.Integer)
 	time_start = db.Column(db.DateTime)
 	time_end = db.Column(db.DateTime)
 	time_created = db.Column(db.DateTime)
-	pledgor = db.relationship('Pledge', backref='project', ForeignKey='Pledge.project_id')
+	pledges = db.relationship('Pledge', backref='project', foreign_keys='Pledge.project_id')
 
 
 class Pledge(db.Model):
