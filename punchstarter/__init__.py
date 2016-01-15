@@ -13,7 +13,11 @@ manager.add_command('db', MigrateCommand)
 
 from punchstarter.models import *
 
-@app.route("/")
+@app.route("/") #home page route
 def hello():
     return render_template("index.html")
     # render_template automaticially looks for templates in the templates folder
+
+@app.route("/projects/create") # create a project route
+def create():
+    return render_template("create.html")
