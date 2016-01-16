@@ -22,11 +22,11 @@ def hello():
 @app.route("/projects/create/", methods=['GET', 'POST']) # create a project route
 def create():
 	if request.method == "GET":
-        return render_template("create.html")
-    if request.method == "POST":
-    	# Handle the form submission
+		return render_template("create.html")
+	if request.method == "POST":
+		# Handle form sumbission
 
-    	now = datetime.datetime.now()
+		now = datetime.datetime.now()
 
     	#form returns date as text string - need to convert to proper date/time for database
     	time_end = request.form.get("funding_end_date")
